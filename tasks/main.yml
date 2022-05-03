@@ -1,10 +1,10 @@
 ---
-- name: Install and enable EPEL
+- name: install and enable EPEL
   ansible.builtin.yum:
     name: epel-release
   when: centos_base_enable_epel|bool
 
-- name: Install development packages
+- name: install development packages
   ansible.builtin.yum:
     name:
       - git
@@ -22,19 +22,19 @@
       - bzip2
       - gzip
       - vim-enhanced
-  when: centos_base_development_packages|bool
+  when: centos_base_development_packages | bool
 
-- name: Install basic packages EL 6 and 7
+- name: install basic packages EL 6 and 7
   ansible.builtin.yum:
     name:
       - python-virtualenv
       - yum-cron
       - yum-utils
   when:
-    - centos_base_basic_packages|bool
+    - centos_base_basic_packages | bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
-- name: Install basic packages EL 8
+- name: install basic packages EL 8
   ansible.builtin.yum:
     name:
       - python3-virtualenv
@@ -42,12 +42,12 @@
     - centos_base_basic_packages|bool
     - ansible_distribution_major_version == "8"
 
-- name: Install the 'Development tools' package group
+- name: install the 'Development tools' package group
   ansible.builtin.yum:
     name: "@Development tools"
   when: centos_base_basic_packages|bool
 
-- name: Install SELinux packages for CentOS 6 and CentOS 7
+- name: install SELinux packages for CentOS 6 and CentOS 7
   ansible.builtin.yum:
     name:
       - policycoreutils
@@ -65,7 +65,7 @@
     - centos_base_selinux_packages|bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
-- name: Install SELinux packages for CentOS 8
+- name: install SELinux packages for CentOS 8
   ansible.builtin.yum:
     name:
       - policycoreutils-python-utils
@@ -74,7 +74,7 @@
     - ansible_distribution_major_version == "8"
 
 
-- name: Install utility packages
+- name: install utility packages
   ansible.builtin.yum:
     name:
       - vim-enhanced
@@ -85,7 +85,7 @@
       - wget
   when: centos_base_utility_packages|bool
 
-- name: Install zlib packages from EPEL
+- name: install zlib packages from EPEL
   ansible.builtin.yum:
     name:
       - zlib-static
@@ -96,7 +96,7 @@
     - centos_base_development_packages|bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
-- name: Install debugging packages
+- name: install debugging packages
   ansible.builtin.yum:
     name:
       - strace
@@ -109,7 +109,7 @@
       - net-tools
   when: centos_base_debug_packages|bool
 
-- name: Install packages specific to CentOS 6
+- name: install packages specific to CentOS 6
   ansible.builtin.yum:
     name:
       - fail2ban
@@ -118,7 +118,7 @@
     - ansible_distribution_major_version == "6"
     - centos_base_enable_epel|bool
 
-- name: Install packages specific to CentOS 7
+- name: install packages specific to CentOS 7
   ansible.builtin.yum:
     name:
       - fail2ban-all
@@ -129,7 +129,7 @@
     - centos_base_enable_epel|bool
     - centos_base_fail2ban_configuration|bool
 
-- name: Install firewalld
+- name: install firewalld
   ansible.builtin.yum:
     name: firewalld
   when:
@@ -158,19 +158,19 @@
     state: present
   when: centos_base_lockprg|bool
 
-- name: Create htop direcotry
+- name: create htop direcotry
   ansible.builtin.file:
     path: /root/.config/htop
     state: directory
   when: centos_base_htop_configuration|bool
 
-- name: Configure htop
+- name: configure htop
   ansible.builtin.template:
     src: root/.config/htop/htoprc
     dest: /root/.config/htop
   when: centos_base_htop_configuration|bool
 
-- name: Ensure fail2ban service is enabled and started
+- name: ensure fail2ban service is enabled and started
   ansible.builtin.service:
     name: fail2ban
     state: started
@@ -178,20 +178,20 @@
   when: centos_base_fail2ban_configuration|bool
 
 # Allow user to control /etc/fail2ban/jail.local
-- name: Secure Fail2ban configuration
+- name: secure Fail2ban configuration
   ansible.builtin.template:
     src: etc/fail2ban/jail.d/centos_base.conf
     dest: /etc/fail2ban/jail.d
   when: centos_base_fail2ban_configuration|bool
 
-- name: Secure SSH configuration
+- name: secure SSH configuration
   ansible.builtin.template:
     src: etc/ssh/sshd_config
     dest: /etc/ssh
   notify: sshd restart
   when: centos_base_secure_sshd|bool
 
-- name: Ensure firewalld is started and enabled
+- name: ensure firewalld is started and enabled
   ansible.builtin.systemd:
     name: firewalld
     state: started
@@ -202,7 +202,7 @@
     - centos_base_basic_packages|bool
     - centos_base_firewalld|bool
 
-- name: Enable firewalld services
+- name: enable firewalld services
   ansible.posix.firewalld:
     permanent: true
     service: "{{ item }}"
