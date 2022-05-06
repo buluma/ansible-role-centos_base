@@ -2,27 +2,33 @@
 - name: install and enable EPEL
   ansible.builtin.yum:
     name: epel-release
-  when: centos_base_enable_epel|bool
+  when: centos_base_enable_epel | bool
 
-- name: install development packages
-  ansible.builtin.yum:
-    name:
-      - git
-      - gcc
-      - kernel-devel
-      - kernel-headers
-      - sqlite-devel
-      - sqlite
-      - bzip2-devel
-      - readline-devel
-      - tcl-devel
-      - libcurl
-      - openssl-devel
-      - which
-      - bzip2
-      - gzip
-      - vim-enhanced
+- name: install requirements for centos_base
+  ansible.builtin.package:
+    name: "{{ centos_requirements }}"
+    state: present
   when: centos_base_development_packages | bool
+
+# - name: install development packages
+#   ansible.builtin.yum:
+#     name:
+#       - git
+#       - gcc
+#       - kernel-devel
+#       - kernel-headers
+#       - sqlite-devel
+#       - sqlite
+#       - bzip2-devel
+#       - readline-devel
+#       - tcl-devel
+#       - libcurl
+#       - openssl-devel
+#       - which
+#       - bzip2
+#       - gzip
+#       - vim-enhanced
+#   when: centos_base_development_packages | bool
 
 - name: install basic packages EL 6 and 7
   ansible.builtin.yum:
@@ -45,7 +51,7 @@
 - name: install the 'Development tools' package group
   ansible.builtin.yum:
     name: "@Development tools"
-  when: centos_base_basic_packages|bool
+  when: centos_base_basic_packages | bool
 
 - name: install SELinux packages for CentOS 6 and CentOS 7
   ansible.builtin.yum:
@@ -70,7 +76,7 @@
     name:
       - policycoreutils-python-utils
   when:
-    - centos_base_selinux_packages|bool
+    - centos_base_selinux_packages | bool
     - ansible_distribution_major_version == "8"
 
 
@@ -83,7 +89,7 @@
       - htop
       - tree
       - wget
-  when: centos_base_utility_packages|bool
+  when: centos_base_utility_packages | bool
 
 - name: install zlib packages from EPEL
   ansible.builtin.yum:
@@ -93,7 +99,7 @@
       - zlib-ada
   when:
     - centos_base_enable_epel|bool
-    - centos_base_development_packages|bool
+    - centos_base_development_packages | bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
 - name: install debugging packages
@@ -107,7 +113,7 @@
       - vnstat
       - sysstat
       - net-tools
-  when: centos_base_debug_packages|bool
+  when: centos_base_debug_packages | bool
 
 - name: install packages specific to CentOS 6
   ansible.builtin.yum:
@@ -116,7 +122,7 @@
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "6"
-    - centos_base_enable_epel|bool
+    - centos_base_enable_epel | bool
 
 - name: install packages specific to CentOS 7
   ansible.builtin.yum:
@@ -127,7 +133,7 @@
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
     - centos_base_enable_epel|bool
-    - centos_base_fail2ban_configuration|bool
+    - centos_base_fail2ban_configuration | bool
 
 - name: install firewalld
   ansible.builtin.yum:
@@ -135,61 +141,61 @@
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7" or ansible_distribution_major_version == "8"
-    - centos_base_security_packages|bool
-    - centos_base_firewalld|bool
+    - centos_base_security_packages | bool
+    - centos_base_firewalld | bool
 
 - name: vim alias in .bashrc
   ansible.builtin.lineinfile:
     dest: /root/.bashrc
     line: "alias vi=vim"
     state: present
-  when: centos_base_basic_vim_tweaks|bool
+  when: centos_base_basic_vim_tweaks | bool
 
 - name: .vimrc file
   ansible.builtin.template:
     dest: /root/
     src: root/.vimrc
-  when: centos_base_basic_vim_tweaks|bool
+  when: centos_base_basic_vim_tweaks | bool
 
 - name: LOCKPRG to avoid locking of GNU screen sessions
   ansible.builtin.lineinfile:
     dest: /root/.bashrc
     line: 'export LOCKPRG="/bin/true"'
     state: present
-  when: centos_base_lockprg|bool
+  when: centos_base_lockprg | bool
 
 - name: create htop direcotry
   ansible.builtin.file:
     path: /root/.config/htop
     state: directory
-  when: centos_base_htop_configuration|bool
+  when: centos_base_htop_configuration | bool
 
 - name: configure htop
   ansible.builtin.template:
     src: root/.config/htop/htoprc
     dest: /root/.config/htop
-  when: centos_base_htop_configuration|bool
+  when: centos_base_htop_configuration | bool
 
 - name: ensure fail2ban service is enabled and started
   ansible.builtin.service:
     name: fail2ban
     state: started
     enabled: true
-  when: centos_base_fail2ban_configuration|bool
+  when: centos_base_fail2ban_configuration | bool
 
 # Allow user to control /etc/fail2ban/jail.local
 - name: secure Fail2ban configuration
   ansible.builtin.template:
     src: etc/fail2ban/jail.d/centos_base.conf
     dest: /etc/fail2ban/jail.d
-  when: centos_base_fail2ban_configuration|bool
+  when: centos_base_fail2ban_configuration | bool
 
 - name: secure SSH configuration
   ansible.builtin.template:
     src: etc/ssh/sshd_config
     dest: /etc/ssh
   notify: sshd restart
-  when: centos_base_secure_sshd|bool
+  when: centos_base_secure_sshd | bool
 
 - name: ensure firewalld is started and enabled
   ansible.builtin.systemd:
@@ -199,7 +205,7 @@
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7" or ansible_distribution_major_version == "8"
-    - centos_base_basic_packages|bool
+    - centos_base_basic_packages | bool
     - centos_base_firewalld|bool
 
 - name: enable firewalld services
@@ -214,5 +220,5 @@
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7" or ansible_distribution_major_version == "8"
-    - centos_base_firewalld_services|length > 0
-    - centos_base_firewalld|bool
+    - centos_base_firewalld_services | length > 0
+    - centos_base_firewalld | bool
