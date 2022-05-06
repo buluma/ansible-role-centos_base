@@ -45,7 +45,7 @@
     name:
       - python3-virtualenv
   when:
-    - centos_base_basic_packages|bool
+    - centos_base_basic_packages | bool
     - ansible_distribution_major_version == "8"
 
 - name: install the 'Development tools' package group
@@ -68,7 +68,7 @@
       - policycoreutils-devel
       - setroubleshoot
   when:
-    - centos_base_selinux_packages|bool
+    - centos_base_selinux_packages | bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
 - name: install SELinux packages for CentOS 8
@@ -98,7 +98,7 @@
       - zlib-ada-devel
       - zlib-ada
   when:
-    - centos_base_enable_epel|bool
+    - centos_base_enable_epel | bool
     - centos_base_development_packages | bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
@@ -132,7 +132,7 @@
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
-    - centos_base_enable_epel|bool
+    - centos_base_enable_epel | bool
     - centos_base_fail2ban_configuration | bool
 
 - name: install firewalld
@@ -206,7 +206,7 @@
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7" or ansible_distribution_major_version == "8"
     - centos_base_basic_packages | bool
-    - centos_base_firewalld|bool
+    - centos_base_firewalld | bool
 
 - name: enable firewalld services
   ansible.posix.firewalld:
