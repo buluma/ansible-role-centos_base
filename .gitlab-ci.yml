@@ -101,7 +101,7 @@ role_testing:
 
 release_job:
   stage: .post
-  needs: [molecule]
+  # needs: [molecule]
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   rules:
     - if: $CI_COMMIT_TAG
