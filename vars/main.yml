@@ -17,3 +17,34 @@ centos_requirements:
   - bzip2
   - gzip
   - vim-enhanced
+
+selinux_packages:
+  - policycoreutils
+  - policycoreutils-python
+  - selinux-policy
+  - selinux-policy-targeted
+  - libselinux-utils
+  - setroubleshoot-server
+  - setools
+  - setools-console
+  - mcstrans
+  - policycoreutils-devel
+  - setroubleshoot
+
+utility_packages:
+  - vim-enhanced
+  - cifs-utils
+  - screen
+  - htop
+  - tree
+  - wget
+
+debugging_packages:
+  - strace
+  - mtr
+  - traceroute
+  - nmap
+  - iotop
+  - vnstat
+  - sysstat
+  - net-tools
