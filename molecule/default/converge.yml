@@ -19,7 +19,7 @@
     - centos_base_selinux_packages: true
     - centos_base_lockprg: true
     - centos_base_htop_configuration: true
-    - centos_base_fail2ban_configuration: true
+    - centos_base_fail2ban_configuration: false
   pre_tasks:
     - name: intall Apache
       ansible.builtin.yum:
