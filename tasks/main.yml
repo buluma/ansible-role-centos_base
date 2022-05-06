@@ -1,8 +1,15 @@
 ---
-- name: install and enable EPEL
-  ansible.builtin.yum:
-    name: epel-release
-  when: centos_base_enable_epel | bool
+
+- name: import assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+# satisfied by role epel
+# - name: install and enable EPEL
+#   ansible.builtin.yum:
+#     name: epel-release
+#   when: centos_base_enable_epel | bool
 
 - name: install requirements for centos_base
   ansible.builtin.package:
