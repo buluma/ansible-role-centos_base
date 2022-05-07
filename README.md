@@ -11,7 +11,6 @@ Basic CentOS Configuration
 This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
-# TODO move this playbook to a different scenario
 # Default scenario must work with default variable values
 - name: Converge
   hosts: all
