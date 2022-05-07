@@ -20,6 +20,20 @@ molecule:
         tag: "latest"
       - image: "enterpriselinux"
         tag: "7"
+      - image: "centos"
+        tag: "systemd"
+      - image: "centos"
+        tag: "centos7"
+      - image: "centos"
+        tag: "centos8"
+      - image: "centos"
+        tag: "centos7.9.2009"
+      - image: "centos"
+        tag: "centos8.4.2105"
+      - image: "centos"
+        tag: "centos8.4.2105"
+      - image: "enterpriselinux"
+        tag: "7"
 
 testing:
   stage: test
@@ -33,6 +47,20 @@ testing:
     matrix:
       - image: "enterpriselinux"
         tag: "latest"
+      - image: "enterpriselinux"
+        tag: "7"
+      - image: "centos"
+        tag: "systemd"
+      - image: "centos"
+        tag: "centos7"
+      - image: "centos"
+        tag: "centos8"
+      - image: "centos"
+        tag: "centos7.9.2009"
+      - image: "centos"
+        tag: "centos8.4.2105"
+      - image: "centos"
+        tag: "centos8.4.2105"
       - image: "enterpriselinux"
         tag: "7"
 
@@ -57,7 +85,7 @@ role_testing:
 
 release_job:
   stage: .post
-  needs: [molecule]
+  # needs: [molecule]
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   rules:
     - if: $CI_COMMIT_TAG

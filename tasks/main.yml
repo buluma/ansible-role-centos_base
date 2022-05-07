@@ -1,34 +1,21 @@
 ---
-- name: install and enable EPEL
-  ansible.builtin.yum:
-    name: epel-release
-  when: centos_base_enable_epel | bool
+
+- name: import assert.yml
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+# satisfied by role epel
+# - name: install and enable EPEL
+#   ansible.builtin.yum:
+#     name: epel-release
+#   when: centos_base_enable_epel | bool
 
 - name: install requirements for centos_base
   ansible.builtin.package:
     name: "{{ centos_requirements }}"
     state: present
   when: centos_base_development_packages | bool
-
-# - name: install development packages
-#   ansible.builtin.yum:
-#     name:
-#       - git
-#       - gcc
-#       - kernel-devel
-#       - kernel-headers
-#       - sqlite-devel
-#       - sqlite
-#       - bzip2-devel
-#       - readline-devel
-#       - tcl-devel
-#       - libcurl
-#       - openssl-devel
-#       - which
-#       - bzip2
-#       - gzip
-#       - vim-enhanced
-#   when: centos_base_development_packages | bool
 
 - name: install basic packages EL 6 and 7
   ansible.builtin.yum:
@@ -53,23 +40,32 @@
     name: "@Development tools"
   when: centos_base_basic_packages | bool
 
+# install selinux_packages
 - name: install SELinux packages for CentOS 6 and CentOS 7
   ansible.builtin.yum:
-    name:
-      - policycoreutils
-      - policycoreutils-python
-      - selinux-policy
-      - selinux-policy-targeted
-      - libselinux-utils
-      - setroubleshoot-server
-      - setools
-      - setools-console
-      - mcstrans
-      - policycoreutils-devel
-      - setroubleshoot
+    name: "{{ selinux_packages }}"
+    state: present
   when:
     - centos_base_selinux_packages | bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
+
+# - name: install SELinux packages for CentOS 6 and CentOS 7
+#   ansible.builtin.yum:
+#     name:
+#       - policycoreutils
+#       - policycoreutils-python
+#       - selinux-policy
+#       - selinux-policy-targeted
+#       - libselinux-utils
+#       - setroubleshoot-server
+#       - setools
+#       - setools-console
+#       - mcstrans
+#       - policycoreutils-devel
+#       - setroubleshoot
+#   when:
+#     - centos_base_selinux_packages | bool
+#     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
 - name: install SELinux packages for CentOS 8
   ansible.builtin.yum:
@@ -80,16 +76,23 @@
     - ansible_distribution_major_version == "8"
 
 
+# install utility_packages
 - name: install utility packages
   ansible.builtin.yum:
-    name:
-      - vim-enhanced
-      - cifs-utils
-      - screen
-      - htop
-      - tree
-      - wget
+    name: "{{ utility_packages }}"
+    state: present
   when: centos_base_utility_packages | bool
+
+# - name: install utility packages
+#   ansible.builtin.yum:
+#     name:
+#       - vim-enhanced
+#       - cifs-utils
+#       - screen
+#       - htop
+#       - tree
+#       - wget
+#   when: centos_base_utility_packages | bool
 
 - name: install zlib packages from EPEL
   ansible.builtin.yum:
@@ -102,18 +105,25 @@
     - centos_base_development_packages | bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
+# install debugging_packages
 - name: install debugging packages
   ansible.builtin.yum:
-    name:
-      - strace
-      - mtr
-      - traceroute
-      - nmap
-      - iotop
-      - vnstat
-      - sysstat
-      - net-tools
+    name: "{{ debugging_packages }}"
+    state: present
   when: centos_base_debug_packages | bool
+
+# - name: install debugging packages
+#   ansible.builtin.yum:
+#     name:
+#       - strace
+#       - mtr
+#       - traceroute
+#       - nmap
+#       - iotop
+#       - vnstat
+#       - sysstat
+#       - net-tools
+#   when: centos_base_debug_packages | bool
 
 - name: install packages specific to CentOS 6
   ansible.builtin.yum:
