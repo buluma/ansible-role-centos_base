@@ -44,7 +44,7 @@ jobs:
       matrix:
         config:
           - image: "enterpriselinux"
-            tag: "latest"
+            tag: "8"
           - image: "enterpriselinux"
             tag: "7"
     steps:

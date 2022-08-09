@@ -20,7 +20,7 @@ molecule:
   parallel:
     matrix:
       - image: "enterpriselinux"
-        tag: "latest"
+        tag: "8"
       - image: "enterpriselinux"
         tag: "7"
 
@@ -36,6 +36,6 @@ testing:
   parallel:
     matrix:
       - image: "enterpriselinux"
-        tag: "latest"
+        tag: "8"
       - image: "enterpriselinux"
         tag: "7"
