@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.3](https://github.com/buluma/ansible-role-centos_base/tree/0.1.3) (2023-05-05)
+
+[Full Changelog](https://github.com/buluma/ansible-role-centos_base/compare/0.1.2...0.1.3)
+
 ## [0.1.2](https://github.com/buluma/ansible-role-centos_base/tree/0.1.2) (2022-08-09)
 
 [Full Changelog](https://github.com/buluma/ansible-role-centos_base/compare/0.1.1...0.1.2)
