@@ -5,4 +5,4 @@
 repository:
   description: Basic CentOS Configuration
   homepage: https://buluma.github.io/
-  topics: centos, postinstalltweaks, system, security, fail2ban, development, ansible, molecule, tox, playbook, hacktoberfest
+  topics: centos, postinstalltweaks, system, security, fail2ban, development, ansible, molecule, tox, playbook
