@@ -1,10 +1,10 @@
-# [centos_base](#centos_base)
+# [Ansible role centos_base](#centos_base)
 
 Basic CentOS Configuration
 
-|GitHub|GitLab|Quality|Downloads|Version|Issues|Pull Requests|
-|------|------|-------|---------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-centos_base/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-centos_base/actions)|[![gitlab](https://gitlab.com/shadowwalker/ansible-role-centos_base/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-centos_base)|[![quality](https://img.shields.io/ansible/quality/59067)](https://galaxy.ansible.com/buluma/centos_base)|[![downloads](https://img.shields.io/ansible/role/d/59067)](https://galaxy.ansible.com/buluma/centos_base)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-centos_base.svg)](https://github.com/buluma/ansible-role-centos_base/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-centos_base.svg)](https://github.com/buluma/ansible-role-centos_base/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-centos_base.svg)](https://github.com/buluma/ansible-role-centos_base/pulls/)|
+|GitHub|GitLab|Downloads|Version|Issues|Pull Requests|
+|------|------|-------|-------|------|-------------|
+|[![github](https://github.com/buluma/ansible-role-centos_base/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-centos_base/actions)|[![gitlab](https://gitlab.com/shadowwalker/ansible-role-centos_base/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-centos_base)|[![downloads](https://img.shields.io/ansible/role/d/4664)](https://galaxy.ansible.com/buluma/centos_base)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-centos_base.svg)](https://github.com/buluma/ansible-role-centos_base/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-centos_base.svg)](https://github.com/buluma/ansible-role-centos_base/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-centos_base.svg)](https://github.com/buluma/ansible-role-centos_base/pulls/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -108,7 +108,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 |---------|----|
 |[EL](https://hub.docker.com/repository/docker/buluma/enterpriselinux/general)|8, 7|
 
-The minimum version of Ansible required is 2.1, tests have been done to:
+The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.
