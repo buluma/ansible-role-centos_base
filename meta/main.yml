@@ -1,26 +1,19 @@
----
 galaxy_info:
   role_name: centos_base
   author: buluma
   description: Basic CentOS Configuration
   company: ShadowNet
-
   license: Apache-2.0
-
-  min_ansible_version: "2.10"
-
+  min_ansible_version: '2.10'
   platforms:
-    - name: EL
-      versions:
-        - "8"
-        - "7"
-
+  - name: EL
+    versions:
+    - all
   galaxy_tags:
-    - centos
-    - postinstalltweaks
-    - system
-    - security
-    - fail2ban
-    - development
-
+  - centos
+  - postinstalltweaks
+  - system
+  - security
+  - fail2ban
+  - development
 dependencies: []
