@@ -7,6 +7,7 @@
 **Closed issues:**
 
 - Update buluma/todo-to-issue-action@v1.0.1 @buluma [\#12](https://github.com/buluma/ansible-role-centos_base/issues/12)
+- Update action [\#11](https://github.com/buluma/ansible-role-centos_base/issues/11)
 - rebuild action [\#10](https://github.com/buluma/ansible-role-centos_base/issues/10)
 - Update buluma/todo-to-issue-action@v1.0.1 @buluma [\#9](https://github.com/buluma/ansible-role-centos_base/issues/9)
 - Update action [\#8](https://github.com/buluma/ansible-role-centos_base/issues/8)
