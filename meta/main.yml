@@ -1,3 +1,4 @@
+---
 galaxy_info:
   role_name: centos_base
   author: buluma
@@ -6,11 +7,11 @@ galaxy_info:
   license: Apache-2.0
   min_ansible_version: '2.10'
   platforms:
-  - name: EL
-    versions:
-    - all
+    - name: EL
+      versions:
+        - all
   galaxy_tags:
-  - centos
+    - centos
   - postinstalltweaks
   - system
   - security
