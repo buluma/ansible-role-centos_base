@@ -161,8 +161,9 @@
 
 - name: Add .vimrc file
   ansible.builtin.template:
-    dest: /root/
+    dest: /root/.vimrc
     src: root/.vimrc
+    mode: "0600"
   when: centos_base_basic_vim_tweaks | bool
 
 - name: LOCKPRG to avoid locking of GNU screen sessions
@@ -176,12 +177,14 @@
   ansible.builtin.file:
     path: /root/.config/htop
     state: directory
+    mode: "0700"
   when: centos_base_htop_configuration | bool
 
 - name: Configure htop
   ansible.builtin.template:
     src: root/.config/htop/htoprc
-    dest: /root/.config/htop
+    dest: /root/.config/htop/htoprc
+    mode: "0600"
   when: centos_base_htop_configuration | bool
 
 - name: Ensure fail2ban service is enabled and started
@@ -195,13 +198,15 @@
 - name: Secure Fail2ban configuration
   ansible.builtin.template:
     src: etc/fail2ban/jail.d/centos_base.conf
-    dest: /etc/fail2ban/jail.d
+    dest: /etc/fail2ban/jail.d/centos_base.conf
+    mode: "0644"
   when: centos_base_fail2ban_configuration | bool
 
 - name: Secure SSH configuration
   ansible.builtin.template:
     src: etc/ssh/sshd_config
-    dest: /etc/ssh
+    dest: /etc/ssh/sshd_config
+    mode: "0600"
   notify: Sshd restart
   when: centos_base_secure_sshd | bool
 
