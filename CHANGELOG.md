@@ -12,6 +12,11 @@
 - Update buluma/todo-to-issue-action@v1.0.1 @buluma [\#9](https://github.com/buluma/ansible-role-centos_base/issues/9)
 - Update action [\#8](https://github.com/buluma/ansible-role-centos_base/issues/8)
 
+**Merged pull requests:**
+
+- Bump actions/checkout from 4 to 6 [\#15](https://github.com/buluma/ansible-role-centos_base/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump buluma/molecule-action from 5.0.1 to 5.0.4 [\#6](https://github.com/buluma/ansible-role-centos_base/pull/6) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [0.1.3](https://github.com/buluma/ansible-role-centos_base/tree/0.1.3) (2023-05-05)
 
 [Full Changelog](https://github.com/buluma/ansible-role-centos_base/compare/0.1.2...0.1.3)
