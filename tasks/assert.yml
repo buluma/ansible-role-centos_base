@@ -1,12 +1,10 @@
 ---
-
 - name: assert | Test if centos_requirements is set correctly
   ansible.builtin.assert:
     that:
       - centos_requirements is defined
       - centos_requirements is iterable
     quiet: yes
-
 # - name: test if ca_common_name is set correctly
 #   ansible.builtin.assert:
 #     that:
