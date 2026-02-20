@@ -1,7 +1,7 @@
 ---
 - name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
-  run_once: yes
+  run_once: true
   delegate_to: localhost
 
 # satisfied by role epel
@@ -16,8 +16,8 @@
     state: present
   when: centos_base_development_packages | bool
 
-- name: install basic packages EL 6 and 7
-  ansible.builtin.yum:
+- name: Install basic packages EL 6 and 7
+  ansible.builtin.dnf:
     name:
       - python-virtualenv
       - yum-cron
@@ -27,7 +27,7 @@
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
 - name: Install basic packages EL 8
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name:
       - python3-virtualenv
   when:
@@ -35,13 +35,13 @@
     - ansible_distribution_major_version == "8"
 
 - name: Install the 'Development tools' package group
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "@Development tools"
   when: centos_base_basic_packages | bool
 
 # install selinux_packages
 - name: Install SELinux packages for CentOS 6 and CentOS 7
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "{{ selinux_packages }}"
     state: present
   when:
@@ -67,7 +67,7 @@
 #     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
 - name: Install SELinux packages for CentOS 8
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name:
       - policycoreutils-python-utils
   when:
@@ -76,7 +76,7 @@
 
 # install utility_packages
 - name: Install utility packages
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "{{ utility_packages }}"
     state: present
   when: centos_base_utility_packages | bool
@@ -93,7 +93,7 @@
 #   when: centos_base_utility_packages | bool
 
 - name: Install zlib packages from EPEL
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name:
       - zlib-static
       - zlib-ada-devel
@@ -105,7 +105,7 @@
 
 # install debugging_packages
 - name: Install debugging packages
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "{{ debugging_packages }}"
     state: present
   when: centos_base_debug_packages | bool
@@ -124,7 +124,7 @@
 #   when: centos_base_debug_packages | bool
 
 - name: Install packages specific to CentOS 6
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name:
       - fail2ban
   when:
@@ -133,7 +133,7 @@
     - centos_base_enable_epel | bool
 
 - name: Install packages specific to CentOS 7
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name:
       - fail2ban-all
       - python-inotify
@@ -144,7 +144,7 @@
     - centos_base_fail2ban_configuration | bool
 
 - name: Install firewalld
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: firewalld
   when:
     - ansible_distribution == "CentOS"
