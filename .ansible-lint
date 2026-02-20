@@ -2,11 +2,14 @@
 #
 # Ansible managed
 #
-exclude_list:
-  - ./molecule/default/collections.yml
-  - ./.tox
-  - ./.cache
+exclude_paths:
+  - meta/preferences.yml
+  - molecule/default/prepare.yml
+  - molecule/default/converge.yml
+  - molecule/default/collections.yml
+  - .cache
+  - .github
+  - requirements.yml
 
-skip_list:  # or 'skip_list' to silence them completely
-  - experimental  # all rules tagged as experimental
-  - fqcn-builtins  # Use FQCN for builtin actions.
+enable_list:
+  - name[prefix]

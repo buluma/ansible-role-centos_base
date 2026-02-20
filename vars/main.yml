@@ -53,7 +53,6 @@ _centos_requirements:
 
 centos_requirements: "{{ _centos_requirements[ansible_os_family] | default(_centos_requirements['default'] ) }}"
 
-
 selinux_packages:
   - policycoreutils
   - policycoreutils-python

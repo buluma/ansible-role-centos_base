@@ -8,8 +8,8 @@ on:
       - main
       - testing
     paths-ignore:
-      - '**/README.md'
-      - '**/CHANGELOG.md'
+      - "**/README.md"
+      - "**/CHANGELOG.md"
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -27,9 +27,9 @@ jobs:
           channel: "#ansible"
           message: Starting buluma.centos_base GitLab Trigger...
         if: always()
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
       - name: Mirror + trigger CI
-        uses: buluma/gitlab-mirror-ci-action@1.0.6
+        uses: buluma/gitlab-mirror-ci-action@1.0.7
         with:
           args: "buluma/ansible-role-centos_base"
         env:
