@@ -11,45 +11,43 @@ Basic CentOS Configuration
 This example is taken from [`molecule/default/converge.yml`](https://github.com/buluma/ansible-role-centos_base/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
----
 # TODO: move this playbook to a different scenario
 # Default scenario must work with default variable values
-- name: Converge
-  hosts: all
-  vars:
-    - centos_base_utility_packages: true
-    - centos_base_enable_epel: true
-    - centos_base_vim_users: ["root"]
-    - centos_base_basic_vim_tweaks: true
-    - centos_base_firewalld_services: ["http"]
-    - centos_base_basic_packages: true
-    - centos_base_firewalld: true
-    - centos_base_debug_packages: true
-    - centos_base_security_packages: true
-  pre_tasks:
-    - name: intall Apache
-      ansible.builtin.yum:
-        name: httpd
-    - name: start httpd
-      ansible.builtin.systemd:
-        name: httpd
-        state: started
-  roles:
-    - role: buluma.centos_base
+  - name: Converge
+    hosts: all
+    vars:
+      - centos_base_utility_packages: true
+      - centos_base_enable_epel: true
+      - centos_base_vim_users: ["root"]
+      - centos_base_basic_vim_tweaks: true
+      - centos_base_firewalld_services: ["http"]
+      - centos_base_basic_packages: true
+      - centos_base_firewalld: true
+      - centos_base_debug_packages: true
+      - centos_base_security_packages: true
+    pre_tasks:
+      - name: intall Apache
+        ansible.builtin.yum:
+          name: httpd
+      - name: start httpd
+        ansible.builtin.systemd:
+          name: httpd
+          state: started
+    roles:
+      - role: buluma.centos_base
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-centos_base/blob/master/molecule/default/prepare.yml):
 
 ```yaml
----
-- name: Prepare
-  hosts: all
-  become: true
-  gather_facts: false
+  - name: Prepare
+    hosts: all
+    become: true
+    gather_facts: false
 
-  roles:
-    - role: buluma.bootstrap
-    - role: buluma.epel
+    roles:
+      - role: buluma.bootstrap
+      - role: buluma.epel
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -59,7 +57,6 @@ Also see a [full explanation and example](https://buluma.github.io/how-to-use-th
 The default values for the variables are set in [`defaults/main.yml`](https://github.com/buluma/ansible-role-centos_base/blob/master/defaults/main.yml):
 
 ```yaml
----
 # defaults file for centos_base
 
 centos_base_secure_sshd: false
