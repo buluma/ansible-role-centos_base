@@ -1,3 +1,4 @@
+---
 # TODO: move this playbook to a different scenario
 # Default scenario must work with default variable values
   - name: Converge
