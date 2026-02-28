@@ -1,12 +1,10 @@
 ---
 - name: Sshd restart
   ansible.builtin.service:
-
     name: sshd
     state: restarted
 - name: Firewalld restart
   ansible.builtin.service:
-
     name: firewalld
     state: restarted
 - name: Fail2ban restart
