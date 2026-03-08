@@ -2,9 +2,9 @@
 
 Basic CentOS Configuration
 
-|GitHub|GitLab|Downloads|Version|
-|------|------|---------|-------|
-|[![github](https://github.com/buluma/ansible-role-centos_base/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-centos_base/actions)|[![gitlab](https://gitlab.com/shadowwalker/ansible-role-centos_base/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-centos_base)|[![downloads](https://img.shields.io/ansible/role/d/buluma/centos_base)](https://galaxy.ansible.com/buluma/centos_base)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-centos_base.svg)](https://github.com/buluma/ansible-role-centos_base/releases/)|
+|GitHub|Issues|Pull Requests|Version|Downloads|
+|------|------|-------------|-------|---------|
+|[![github](https://github.com/buluma/ansible-role-centos_base/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-centos_base/actions/workflows/molecule.yml)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-centos_base.svg)](https://github.com/buluma/ansible-role-centos_base/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-centos_base.svg)](https://github.com/buluma/ansible-role-centos_base/pulls/)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-centos_base.svg)](https://github.com/buluma/ansible-role-centos_base/releases/)|[![Ansible Role](https://img.shields.io/ansible/role/d/buluma/centos_base)](https://galaxy.ansible.com/ui/standalone/roles/buluma/centos_base/documentation)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -17,25 +17,25 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 - name: Converge
   hosts: all
   vars:
-  - centos_base_utility_packages: true
-  - centos_base_enable_epel: true
-  - centos_base_vim_users: ["root"]
-  - centos_base_basic_vim_tweaks: true
-  - centos_base_firewalld_services: ["http"]
-  - centos_base_basic_packages: true
-  - centos_base_firewalld: true
-  - centos_base_debug_packages: true
-  - centos_base_security_packages: true
+    - centos_base_utility_packages: true
+    - centos_base_enable_epel: true
+    - centos_base_vim_users: ["root"]
+    - centos_base_basic_vim_tweaks: true
+    - centos_base_firewalld_services: ["http"]
+    - centos_base_basic_packages: true
+    - centos_base_firewalld: true
+    - centos_base_debug_packages: true
+    - centos_base_security_packages: true
   pre_tasks:
-  - name: intall Apache
-    ansible.builtin.yum:
-      name: httpd
-  - name: start httpd
-    ansible.builtin.systemd:
-      name: httpd
-      state: started
+    - name: intall Apache
+      ansible.builtin.yum:
+        name: httpd
+    - name: start httpd
+      ansible.builtin.systemd:
+        name: httpd
+        state: started
   roles:
-  - role: buluma.centos_base
+    - role: buluma.centos_base
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-centos_base/blob/master/molecule/default/prepare.yml):
@@ -48,8 +48,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: false
 
   roles:
-  - role: buluma.bootstrap
-  - role: buluma.epel
+    - role: buluma.bootstrap
+    - role: buluma.epel
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -87,25 +87,26 @@ centos_base_development_packages: false
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
-| Requirement | GitHub | GitLab |
-|-------------|--------|--------|
-|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-bootstrap)|
-|[buluma.epel](https://galaxy.ansible.com/buluma/epel)|[![Build Status GitHub](https://github.com/buluma/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-epel/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-epel/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-epel)|
+| Requirement | GitHub |
+|-------------|--------|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|
+|[buluma.epel](https://galaxy.ansible.com/buluma/epel)|[![Build Status GitHub](https://github.com/buluma/ansible-role-epel/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-epel/actions)|
 
 ## [Context](#context)
 
 This role is part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.github.io/) for further information.
 
 Here is an overview of related roles:
+
 ![dependencies](https://raw.githubusercontent.com/buluma/ansible-role-centos_base/png/requirements.png "Dependencies")
 
 ## [Compatibility](#compatibility)
 
-This role has been tested on these [container images](https://hub.docker.com/u/buluma):
+This role has been tested on these [container images](https://hub.docker.com/u/robertdebock):
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/r/buluma/enterpriselinux)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
 
 The minimum version of Ansible required is 2.10, tests have been done on:
 
@@ -122,3 +123,4 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 ## [Author Information](#author-information)
 
 [buluma](https://buluma.github.io/)
+
