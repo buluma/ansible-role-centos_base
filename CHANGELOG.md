@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/buluma/ansible-role-centos_base/tree/HEAD)
+## [26.6.0](https://github.com/buluma/ansible-role-centos_base/tree/26.6.0) (2026-06-14)
 
-[Full Changelog](https://github.com/buluma/ansible-role-centos_base/compare/0.1.3...HEAD)
+[Full Changelog](https://github.com/buluma/ansible-role-centos_base/compare/0.1.3...26.6.0)
 
 **Closed issues:**
 
@@ -11,6 +11,10 @@
 - rebuild action [\#10](https://github.com/buluma/ansible-role-centos_base/issues/10)
 - Update buluma/todo-to-issue-action@v1.0.1 @buluma [\#9](https://github.com/buluma/ansible-role-centos_base/issues/9)
 - Update action [\#8](https://github.com/buluma/ansible-role-centos_base/issues/8)
+
+**Merged pull requests:**
+
+- Bump actions/checkout from 4 to 6 [\#16](https://github.com/buluma/ansible-role-centos_base/pull/16) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [0.1.3](https://github.com/buluma/ansible-role-centos_base/tree/0.1.3) (2023-05-05)
 
