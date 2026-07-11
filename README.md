@@ -17,15 +17,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 - name: Converge
   hosts: all
   vars:
-    - centos_base_utility_packages: true
-    - centos_base_enable_epel: true
-    - centos_base_vim_users: ["root"]
-    - centos_base_basic_vim_tweaks: true
-    - centos_base_firewalld_services: ["http"]
-    - centos_base_basic_packages: true
-    - centos_base_firewalld: true
-    - centos_base_debug_packages: true
-    - centos_base_security_packages: true
+    centos_base_utility_packages: true
+    centos_base_enable_epel: true
+    centos_base_vim_users: ["root"]
+    centos_base_basic_vim_tweaks: true
+    centos_base_firewalld_services: ["http"]
+    centos_base_basic_packages: true
+    centos_base_firewalld: true
+    centos_base_debug_packages: true
+    centos_base_security_packages: true
   pre_tasks:
     - name: intall Apache
       ansible.builtin.yum:
@@ -46,6 +46,13 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   hosts: all
   become: true
   gather_facts: false
+
+  pre_tasks:
+    - name: Install sudo if missing
+      ansible.builtin.raw: "{{ ansible_pkg_mgr | default('dnf') }} install -y sudo"
+      become: false
+      changed_when: false
+      failed_when: false
 
   roles:
     - role: buluma.bootstrap
@@ -101,13 +108,16 @@ Here is an overview of related roles:
 
 ## [Compatibility](#compatibility)
 
-This role has been tested on these [container images](https://hub.docker.com/u/robertdebock):
+This role has been tested on these [container images](https://hub.docker.com/u/buluma):
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[EL](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Debian](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Fedora](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Ubuntu](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
 
-The minimum version of Ansible required is 2.10, tests have been done on:
+The minimum version of Ansible required is 2.12, tests have been done on:
 
 - The previous version.
 - The current version.
@@ -123,6 +133,3 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 
 [buluma](https://buluma.github.io/)
 
-### Get Help
-- Report issues: https://github.com/buluma/ansible-role-centos_base/issues/new
-- See docs: https://docs.ansible.com/collection/gallery/ansible-role-centos_base
